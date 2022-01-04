@@ -1,57 +1,29 @@
 <div class="main-top">
   <div class="left-header">
     <div class="room-name">
-      hogefuga
+      <%= @room.name %>
     </div>
   </div>
   <div class="right-header">
     <div class="finish-chat">
-      <a href="#">チャットを終了する</a>
+      <%= link_to 'チャットを終了する', room_path(@room), method: :delete %>
     </div>
   </div>
 </div>
-<div class="main-middle">
-  <div class="message-box">
-    <div class="name-date">
-      <div class="message-name">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(web) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-text">
-        おはよう
-      </div>
-    </div>
-  </div>
-  <div class="message-box">
-    <div class="name-date">
-      <div class="message-name">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(web) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-text">
-        おはよう
-      </div>
-    </div>
-  </div>
-</div>
-<div class="main-bottom">
-  <form class="contact-form">
-    <div class="form-input">
-      <input placeholder="type a message" class="message-form">
-      <label class="form-image">
-        <span class="image-file">画像</span>
-        <input type="file" class="hidden">
-      </label>
-    </div>
-    <input type="submit" value="送信" class="send">
 
-  </form>
+<div class="main-middle">
+  <%= render partial: 'message', collection: @messages %> <%# メッセージ表示部分の呼び出し %>
+</div>
+
+<div class="main-bottom">
+    <%= form_with model: [@room, @message], class: 'contact-form', local: true do |f| %>
+      <div class="form-input">
+        <%= f.text_field :content, class: 'message-form', placeholder: 'type a message' %>
+        <label class="form-image">
+          <span class="image-file">画像</span>
+          <%= f.file_field :image, class: 'hidden' %>
+        </label>
+      </div>
+    <%= f.submit '送信', class: 'form-submit' %>
+    <% end %>
 </div>
