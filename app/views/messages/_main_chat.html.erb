@@ -10,38 +10,11 @@
     </div>
   </div>
 </div>
+
 <div class="main-middle">
-  <div class="message-box">
-    <div class="name-date">
-      <div class="message-name">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(web) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-text">
-        おはよう
-      </div>
-    </div>
-  </div>
-  <div class="message-box">
-    <div class="name-date">
-      <div class="message-name">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(web) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-text">
-        おはよう
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'message', collection: @messages %> <%# メッセージ表示部分の呼び出し %>
 </div>
+
 <div class="main-bottom">
     <%= form_with model: [@room, @message], class: 'contact-form', local: true do |f| %>
       <div class="form-input">
